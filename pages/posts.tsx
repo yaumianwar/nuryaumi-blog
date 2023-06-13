@@ -8,9 +8,10 @@ import Pagination from '../components/pagination';
 import { getSortedPostsData } from '../lib/posts';
 import { useState, useEffect } from "react";
 import {paginate} from '../utils/index';
+import { InferGetStaticPropsType } from 'next';
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = await getSortedPostsData();
   return {
     props: {
       allPostsData,
@@ -18,11 +19,11 @@ export async function getStaticProps() {
   };
 }
 
-export default function Page({allPostsData}) {
-  const [currentPage, setCurrentPage] = useState(1);
+export default function Page({allPostsData}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const pageSize = 5;
 
-  const onPageChange = (page) => {
+  const onPageChange = (page: number) => {
     setCurrentPage(page);
   };
 

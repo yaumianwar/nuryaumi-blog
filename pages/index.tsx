@@ -6,21 +6,22 @@ import avatar from '../src/yaumi-foto.jpeg';
 import Date from '../components/date';
 import Pagination from '../components/pagination';
 
-import { getSortedPostsData } from '../lib/posts';
+import { getSortedPostsData, type PostData } from '../lib/posts';
+import { InferGetStaticPropsType } from 'next';
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = await getSortedPostsData();
 
   //  get only first ten post
-  let totalPosts = allPostsData.slice(0, 3)
+  let totalPosts = allPostsData.slice(0, 3) as PostData[];
   return {
     props: {
-      allPostsData: totalPosts
+      allPostsData: totalPosts,
     },
   };
 }
 
-export default function Page({ allPostsData }) {
+export default function Page({ allPostsData }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
     <div className="flex flex-row-reverse space-x-4 space-x-reverse mx-5 my-3 space-x-10 text-cyan-600">

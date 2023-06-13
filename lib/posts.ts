@@ -6,29 +6,27 @@ import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-export function getSortedPostsData() {
+export interface PostData {
+  id: string,
+  title: string,
+  date: string,
+  intro: string,
+  contentHtml: string,
+};
+
+export async function getSortedPostsData() {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map((fileName) => {
-    // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, '');
-
-    // Read markdown file as string
-    const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents);
-
-    // Combine the data with the id
-    return {
-      id,
-      ...matterResult.data,
-    };
-  });
+  const allPostsData : PostData[] = await Promise.all(
+    fileNames.map((fileName) => {
+      // Remove ".md" from file name to get id
+      const id = fileName.replace(/\.md$/, '');
+      return getPostData(id);
+    })
+  );
   // Sort posts by date
   return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
+    if (new Date(a.date) < new Date(b.date)) {
       return 1;
     } else {
       return -1;
@@ -61,12 +59,16 @@ export function getAllPostIds() {
   });
 }
 
-export async function getPostData(id) {
+export async function getPostData(id: string) : Promise<PostData> {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
+
+  const title = matterResult.data['title'] as string;
+  const intro = matterResult.data['intro'] as string;
+  const date = matterResult.data['date'] as string;
 
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()
@@ -78,6 +80,8 @@ export async function getPostData(id) {
   return {
     id,
     contentHtml,
-    ...matterResult.data,
+    title,
+    date,
+    intro,
   };
 }

@@ -4,7 +4,7 @@ import '../globals.css';
 import Head from 'next/head';
 import Date from '../../components/date';
  
-export default function Page({postData}) {
+export default function Page({postData}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
   <>
   <Head>
@@ -35,6 +35,7 @@ export default function Page({postData}) {
 }
 
 import { getAllPostIds, getPostData } from '../../lib/posts';
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 
 export async function getStaticPaths() {
   const paths = getAllPostIds();
@@ -44,9 +45,9 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: GetStaticPropsContext<{id: string}>) {
   // Add the "await" keyword like this:
-  const postData = await getPostData(params.id);
+  const postData = await getPostData(params?.id || '');
 
   return {
     props: {
