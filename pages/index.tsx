@@ -114,7 +114,7 @@ export default function Page({ allPostsData }) {
       <hr></hr>
       <div></div>
       {allPostsData.map(({ id, date, title, intro }) => (
-            <a href={`/posts/${id}`}>
+            <a href={`/posts/${id}`} key={id}>
             <div className="mb-8 mt-6">
             <div className="flex justify-between">
               <div className='text-3xl font-semibold text-slate-800'>{title}</div>
