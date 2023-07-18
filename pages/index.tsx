@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import './globals.css';
-import avatar from '../src/yaumi.jpg';
+import avatar from '../src/yaumi-foto.jpg';
 import Date from '../components/date';
 import Pagination from '../components/pagination';
 
