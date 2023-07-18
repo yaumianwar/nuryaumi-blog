@@ -41,7 +41,7 @@ export default function Page({allPostsData}: InferGetStaticPropsType<typeof getS
       <a href={`/posts/${id}`} key={id}>
             <div className="mb-8 mt-6">
             <div className="flex justify-between">
-              <div className='text-3xl font-semibold text-slate-800'>{title}</div>
+              <div className='text-3xl font-semibold text-slate-800 max-w-3xl'>{title}</div>
               <Date dateString={date} />
             </div>
             <div className="mt-2">

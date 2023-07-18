@@ -3,6 +3,8 @@ import Link from 'next/link';
 import '../globals.css';
 import Head from 'next/head';
 import Date from '../../components/date';
+import markdownStyles from '../markdown-styles.module.css';
+
  
 export default function Page({postData}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -26,7 +28,9 @@ export default function Page({postData}: InferGetStaticPropsType<typeof getStati
               <Date dateString={postData.date} />
             </div>
             <div className="mt-8">
-            <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+            <div 
+              className={markdownStyles['markdown-body']}
+              dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
             </div>
           </div>
     </div>

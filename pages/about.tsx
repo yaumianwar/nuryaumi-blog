@@ -2,7 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import './globals.css';
-import avatar from '../src/yaumi-foto.jpeg';
+import styles from "../pages/Home.module.css";
+import avatar from '../src/yaumi.jpg';
 
 export default function Page() {
   return (
@@ -33,28 +34,34 @@ export default function Page() {
         </div>
         <div className="mt-2 flex flex-col space-y-4 text-slate-500">
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-            Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, 
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-            It has survived not only five centuries, but also the leap into electronic typesetting, 
-            remaining essentially unchanged.
+            I&apos;m Nur Yaumi, i&apos;s Yaumi for short. I&apos;m a house wife and a mom of a 1yo daughter.
+            Before being a fulltime mom, I&apos;m a backend developer with 4 years experience.
+            I dedicated all of my time to take care my daughter and husband without house maid and baby sitter.
+            As my daughter grow up and I have a little leisure time, I want to back code and learn again. 
           </p>
 
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-            Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, 
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-            It has survived not only five centuries, but also the leap into electronic typesetting, 
-            remaining essentially unchanged.
+            Currently, I take an english course also learn about data engineering and analysis. The last thing that I did 
+            as backend developer is processing a large dataset and I really love to doing it. I learn how to clean the data,
+            process the data and create data visualization.
           </p>
 
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-            Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, 
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-            It has survived not only five centuries, but also the leap into electronic typesetting, 
-            remaining essentially unchanged.
-          </p>
+        </div>
+      </div>
+
+      <div className="mb-6 mt-6">
+        <div className="flex justify-between">
+          <div className='text-3xl font-semibold text-slate-800'>Skills</div>
+        </div>
+        <div className="mt-2 flex flex-col space-y-1 pl-5">
+        <ul className={styles.listItem}>
+          <li className='text-slate-500'>Python</li>
+          <li className='text-slate-500'>MySQL</li>
+          <li className='text-slate-500'>Rest API</li>
+          <li className='text-slate-500'>Data Analysis</li>
+          <li className='text-slate-500'>Data Vizualization</li>
+        </ul>
+
         </div>
       </div>
 

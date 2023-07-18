@@ -40,3 +40,7 @@
   text-decoration: underline;
   /* background-color: rgb(2 132 199);; */
 }
+
+.listItem {
+  list-style-type:'- ';
+}
