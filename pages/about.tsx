@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import './globals.css';
 import styles from "../pages/Home.module.css";
-import avatar from '../src/yaumi-foto.jpg';
+import avatar from '../public/yaumi-foto.jpg';
 
 export default function Page() {
   return (
